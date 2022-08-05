@@ -8,6 +8,7 @@ import {
   NavBtnLink,
 } from './NavbarElements';
 
+
 const Navbar = () => {
   return (
     <>
@@ -34,7 +35,7 @@ const Navbar = () => {
         </NavMenu>
         
         <NavBtn>
-       
+      
         <NavBtnLink to='/auth'>S'authentifier</NavBtnLink>
         </NavBtn>
       </Nav>

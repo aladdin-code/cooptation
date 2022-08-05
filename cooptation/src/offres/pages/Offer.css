@@ -1,0 +1,34 @@
+.text {
+    overflow: hidden;
+   
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+ }
+
+
+ .text-responsive {
+        overflow: hidden;   
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 0; /* number of lines to show */
+                line-clamp: 0; 
+        -webkit-box-orient: vertical;
+        
+     }
+     @media (max-width: 650px) {
+        .text-responsive{
+                          font-size: 0%;
+                 
+        }
+    }
+   
+
+    @media (max-width: 1310px) {
+        .text-responsive{
+                font-size: 0%;
+       
+}
+    }

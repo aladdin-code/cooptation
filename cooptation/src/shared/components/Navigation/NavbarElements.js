@@ -6,8 +6,6 @@ export const Nav = styled.nav`
   background: #FFF;
   height: 80px;
   display: flex;
-  
-   
   justify-content: space-between;
   padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
@@ -50,7 +48,7 @@ export const Bars = styled(FaBars)`
   display: none;
   margin-left: auto;
   margin-right: auto;
-  color: #fff;
+  color: #15cdfc;
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
@@ -87,14 +85,45 @@ export const NavBtn = styled.nav`
     display: none;
   }
 `;
-
-export const myCenter = styled.div`
-
-align-items: center;
+export const CenterNavBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Third Nav */
+  justify-content: center;
+  width: 200vw; 
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
-
- 
-
+export const CenterBtn = styled.div`
+border-radius: 10rem;
+padding: 12px 0px;
+width: 180px;
+font-size: 1rem;
+color: #fff;
+outline: none;
+border: none;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+text-decoration: none;
+/*added */
+text-align: center;
+text-transform: uppercase;
+background-image: linear-gradient(to right, #1CD8D2 0%, #93EDC7  0%, #1CD8D2  100%);
+box-shadow: 0 0 3px #eee;
+display: block;
+/* Second Nav */
+&:hover {
+  background: linear-gradient(to right, #1CD8D2 100%, #93EDC7  20%, #1CD8D2  80%);
+  color: black;
+  /*added */
+  color: red;
+  color: #fff;
+  background-position:  center;
+}
+`;
 export const NavBtnLink = styled(Link)`
  
   border-radius: 10rem;

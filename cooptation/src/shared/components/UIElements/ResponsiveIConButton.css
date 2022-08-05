@@ -1,0 +1,12 @@
+  .button-text {
+      text-overflow: ellipsis;
+  }
+
+
+  @media (max-width: 768px) {
+      .button-text {
+        text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+      }
+  }
