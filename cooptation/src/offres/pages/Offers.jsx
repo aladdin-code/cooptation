@@ -55,6 +55,7 @@ const Feed = props => {
               image={"http://localhost:5000/images"+offre.image}
               title={offre.title}
               createdAt={offre.createdAt}
+              startDate = {offre.startDate}
               description={offre.description}
               />     
             </Grid>

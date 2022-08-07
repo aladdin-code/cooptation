@@ -14,9 +14,9 @@ import {
   IconButton,
   Typography,
   Divider,
+  Dialog,
 } from "@mui/material";
-
-import Dialog from '../../shared/components/UIElements/Dialog';
+ 
 import './Offer.css'
 import ResponsiveIConButton from '../../shared/components/UIElements/ResponsiveIconButton';
  

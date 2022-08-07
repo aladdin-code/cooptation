@@ -9,6 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Axios from "axios";
 import FormData from "form-data";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import {
   // BoldLink,
@@ -60,7 +62,7 @@ export default function ShowCreateOffer(props) {
       setOpen(false);
       window.location.reload();
     };
-     
+
   };
   //
   const [selectedFile, setSelectedFile] = useState(null);
@@ -73,7 +75,13 @@ export default function ShowCreateOffer(props) {
     description: '',
     entreprise: '',
     companyDescription: '',
+    startDate: '',
+    duration: '',
   });
+
+  const [startDate, setStartDate] = useState(new Date());
+
+   
   const createOffer = (event) => {
     event.preventDefault();
     console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPP");
@@ -89,6 +97,11 @@ export default function ShowCreateOffer(props) {
     formDataF.append("description", formData.description);
     formDataF.append("entreprise", formData.entreprise);
     formDataF.append("companyDescription", formData.companyDescription);
+    formDataF.append("duration", formData.duration);
+    console.log("DDDDDDDDDDDDDDDDDDDDDD");
+ console.log(startDate);
+    console.log("DDDDDDDDDDDDDDDDDDDDDD");
+    formDataF.append("startDate", startDate);
     Axios.post("http://localhost:5000/api/offer/addOffer", formDataF, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -96,17 +109,37 @@ export default function ShowCreateOffer(props) {
     }
     )
       .then((response) => {
+
+        console.log("OOOOOOOOOOOOOOOOOOOOOOO");
+        console.log(response);
+        console.log("OOOOOOOOOOOOOOOOOOOOOOO")
+
+
+
         changeErrorDescriptionHandler("Offre créée avec succès !");
         changeDialogTitleHandler("Success");
         handleClickOpenAlertSuccess();
       }).catch((error) => {
+
+        console.log("RRRRRRRRRRRRRRRRRRRRRRRRRR");
+        console.log(error.response.data);
+        console.log("RRRRRRRRRRRRRRRRRRRRRRRRRR");
+
+        console.log("IIIIIIIIIIIIIIIIIIII");
         console.log(error.response.data.error);
+        if(error.response.data.error === "User Not Invited !")  {
+// Tkharijlo Pop
+        } else  if (error.response.data.error === "User Not Invited !")
+        console.log("IIIIIIIIIIIIIIIIIIII");
+        //  
         changeErrorDescriptionHandler(error.response.data.error);
         changeDialogTitleHandler("Erreur !");
         handleClickOpenAlertError();
       })
       ;
   };
+
+
   /*
  & Title Change
  */
@@ -118,6 +151,18 @@ export default function ShowCreateOffer(props) {
       title: value,
     });
   }
+  /*
+& Duration Change
+*/
+  const handleDurationChange = (event) => {
+    const { value } = event.target;
+    console.log(event);
+    setFormData({
+      ...formData,
+      duration: value,
+    });
+  }
+ 
   /*
  & Experience change
  */
@@ -248,30 +293,41 @@ export default function ShowCreateOffer(props) {
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
               <BoxContainer>
-                <text >Titre</text>
+                <h5 >Titre</h5>
                 <Input value={formData.title} onChange={handleChange} id="titre" type="text" placeholder="Titre" />
-                <Marginer direction="vertical" margin={10} />
-                <text >Mode D'emploi</text>
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Mode D'emploi</h5>
                 <Input value={formData.modedemploi} onChange={handleModeDemploiChange} id="desc" type="text" placeholder="Mod D'emploi" />
-                <Marginer direction="vertical" margin={10} />
-                <text >Experience</text>
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Periode Du travail</h5>
+                <Input value={formData.duration} onChange={handleDurationChange} id="desc" type="text" placeholder="Période de mission" />
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Date de début prévue</h5>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => {setStartDate(date);  }}
+                  locale="fr-FR"
+                  isClearable
+                  placeholderText="Choisissez la date !" />
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Experience</h5>
                 <Input value={formData.expYears} id="experience" onChange={handleExperChange} type="text" placeholder="Experience recherchee" />
-                <Marginer direction="vertical" margin={10} />
-                <text >Competence</text>
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Competence</h5>
                 <textarea value={formData.requiredSkills} onChange={handleSkillsChange} name="Text1" cols="40" rows="5" placeholder="Competence  Rechercher" ></textarea>
-                <Marginer direction="vertical" margin={10} />
-                <text >Responsabilte</text>
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Responsabilte</h5>
                 <textarea value={formData.responsabilities} onChange={handleResponsabilitiesChange} name="Text1" cols="40" rows="5" placeholder="Responsabiltee" ></textarea>
-                <Marginer direction="vertical" margin={10} />
-                <text >Description Du l'offre</text>
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Description Du l'offre</h5>
                 <textarea value={formData.description} onChange={handleDescriptionChange} name="Text1" cols="40" rows="5" placeholder="Ddescription Du L'offre " ></textarea>
-                <Marginer direction="vertical" margin={10} />
-                <text >Nom Du Lentreprise</text>
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Nom Du Lentreprise</h5>
                 <Input value={formData.entreprise} onChange={handleCompanyNameChange} type="text" placeholder="Non De L'ntreprise" />
-                <Marginer direction="vertical" margin={10} />
-                <text >Description D'entreprise</text>
+                <Marginer direction="vertical" margin={5} />
+                <h5 >Description D'entreprise</h5>
                 <textarea value={formData.companyDescription} onChange={handleCompanyDescriptionChange} name="Text1" cols="40" rows="5" placeholder="Description de l'entreprise " ></textarea>
-                <Marginer direction="vertical" margin={10} />
+                <Marginer direction="vertical" margin={5} />
                 <div class="ta-left mT10">
                   <label>Image</label>  <Input
                     onChange={(e) => {
