@@ -49,6 +49,7 @@ const Offer = props => {
   const handleCloseErrorAlert = () => {
     console.log("CCCLLLLLLLOOOOOOOOOOOSEEE ALERT");
     setOpenErrorAlert(false);
+    setOpenAlert(false);
   };
 
     /*
@@ -56,35 +57,34 @@ const Offer = props => {
   */
 
   const deletOffer = id => {
-    console.log("deeeeklllllltinnnnggg is called ..................................");
+  console.log(".............. DElete is caled with the following ID");
+  console.log(id);
     Axios.delete("http://localhost:5000/api/offer/deleteOne", {
       data: {
         _id: id
       },
     }
-    )
-      .then((response) => {
+    ).then((response) => {
         let success = response.data;
-
         if (success === "success") {
-          console.log("REached Success");
-
-         // handleCloseAlert();
-          // window.location.reload();
-
+          console.log("Reached Success");
+           handleCloseAlert();
+             window.location.reload();
         } else {
-
           console.log("not success !! Else Is reached ")
-
-        // handleOpenErrorAlert();
+          openErrorAlert()
+           
           // window.location.reload();
         }
-
-      }).catch((error) => {
-        console.log("errer deleting");
-       // handleOpenErrorAlert();
-      })
+      }).catch(
+         (error) => {
+          handleOpenErrorAlert()
+         }
+      )
+      
       ;
+
+
   }
   return (
     <div>
@@ -95,15 +95,15 @@ const Offer = props => {
         }
         <Dialog
           open={openErrorAlert}
-          onClose={handleCloseAlert}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
+          onClose={handleCloseErrorAlert}
+          aria-labelledby="error-alert-dialog-title"
+          aria-describedby="error-alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">
+          <DialogTitle id="error-alert-dialog-title">
             {"Erreur !"}
           </DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
+            <DialogContentText id="error-alert-dialog-description">
               {" Somme Errur has occured"}
             </DialogContentText>
           </DialogContent>
@@ -173,7 +173,7 @@ const Offer = props => {
         </DialogContent>
         <DialogActions>
           <Button  onClick={handleCloseAlert}>Annuler</Button>
-          <Button color='error' onClick ={deletOffer(props.id) }>Supprimer</Button>
+          <Button color='error' onClick ={() => deletOffer(props.id) }>Supprimer</Button>
         </DialogActions>
       </Dialog>
           <Link to={`/offers/${props.id}`}>

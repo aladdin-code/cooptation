@@ -66,7 +66,7 @@ const OfferDetails = props => {
           </IconButton>
         }
         title={loadedOffer.title}
-        subheader={loadedOffer.createdAt}
+        subheader={`Doit commencer le : ${loadedOffer.startDate}`}
         
       />
       <CardMedia
@@ -77,10 +77,72 @@ const OfferDetails = props => {
         image={"http://localhost:5000/images"+loadedOffer.image}
         alt={loadedOffer.title}
       />
-      <CardContent style={{ height: '15rem' }}>
+      <CardContent style={{  }}>
         <Typography variant="body2" color="text.secondary">
           <div>
+           
+          <b >Description</b> <br/>
+          </div>
+          <div>
             {loadedOffer.description}
+          </div>
+          <div>
+          <br/>
+          <b>Responsabilités</b> <br/>
+          </div>
+          <div>
+          
+            {loadedOffer.responsabilities}
+          </div>
+           <div>
+          <br/>
+          <b>Compétence Requise</b> <br/>
+          </div>
+          <div>
+            {loadedOffer.requiredSkills}
+          </div>
+
+          <div>
+          <br/>
+          <b>Entreprise client</b>  
+          </div>
+          <div>
+            {loadedOffer.company}
+          </div>
+
+          <div>
+          <br/>
+          <b>Description De l'entreprise</b> <br/>
+          </div>
+          <div>
+            {loadedOffer.companyDescription}
+          </div>
+
+          <div>
+          <br/>
+          <b>Expérience Recherchée: </b>      
+            {loadedOffer.expYears}
+          </div>
+
+          <div>
+          <br/>
+          <b>Mode D'emploi: </b>
+           
+            {loadedOffer.modedemploi}
+          </div>
+
+          <div>
+          <br/>
+          <b>Durée Du Mession: </b> 
+          
+            {loadedOffer.duration}
+          </div>
+
+          <div>
+          <br/>
+          <b>Candidats </b> 
+          
+           ................
           </div>
         </Typography>
       </CardContent>
