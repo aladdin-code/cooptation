@@ -1,5 +1,6 @@
-import React from 'react';
-import Navbar from './shared/components/Navigation/NavBar';
+import React , {useState , useMemo}from 'react';
+import UserNavBar from './shared/components/Navigation/UserNavbar';
+import GuestNavbar from './shared/components/Navigation/QuestNavbar';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,68 +10,37 @@ import Offers from './offres/pages/Offers.jsx';
 import Hello from './testALA/helo';
 import OfferDetails from './offres/pages/OfferDetails';
 import Bye from './testALA/bye';
+import SignUpPage from './auth/signup/authpage';
+import InvitPage from './auth/invitpage/invitpage';
 
-const offers = [
-  {
-    id: 'off1',
-    title: 'Dev JAVA',
-    image:
-      'https://www.datasciencecentral.com/wp-content/uploads/2021/10/8667507462.jpeg',
-    description: 'This offers seems to be good for youThis offers seems t offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for you',
+import SigninPage from './auth/signin/signinpage';
 
-  },
-  {
-    id: 'off2',
-    title: 'Dev Mobile Flutter',
-    image:
-      'https://sannacode.com/storage/app/uploads/public/5ee/897/555/5ee8975550eff237186992.png',
-    description: 'This offers seems to be good for you',
+import { UserContext } from "../src/shared/context/AuthContext";
 
-  },
-  {
-    id: 'off3',
-    title: 'Dev JAVA',
-    image:
-      'https://www.datasciencecentral.com/wp-content/uploads/2021/10/8667507462.jpeg',
-    description: 'This offers seems to be good for youThis offers seems to be  good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for you',
-
-  }
-  , {
-    id: 'off4',
-    title: 'Dev JAVA',
-    image:
-      'https://www.datasciencecentral.com/wp-content/uploads/2021/10/8667507462.jpeg',
-    description: 'This offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers ',
-
-  }
-  , {
-    id: 'off5',
-    title: 'Dev JAVA',
-    image:
-      'https://www.datasciencecentral.com/wp-content/uploads/2021/10/8667507462.jpeg',
-    description: 'This offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be  ',
-
-  }, {
-    id: 'off6',
-    title: 'Dev Python',
-    image:
-      'https://www.datasciencecentral.com/wp-content/uploads/2021/10/8667507462.jpeg',
-    description: 'This offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be good for youThis offers seems to be  ',
-
-  },
-];
+ 
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
   return (
+    <UserContext.Provider value={value}>
     <Router>
-      <Navbar  />
+      {
+        user? <UserNavBar/> : <GuestNavbar/>
+      }
+      
       <Routes>
         <Route path="/" element={<Hello />} />
-        <Route path="/offers" element={<Offers items={offers} />} />
+        <Route path="/offers" element={<Offers />} />
         <Route path="/offers/:_id" element={<OfferDetails />} />
         <Route path="/by" element={<Bye/>} />
+        <Route path="/auth" element={<SigninPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/invitpage" element={<InvitPage />} />
       </Routes>
     </Router>
+    </UserContext.Provider>
   );
 }
 

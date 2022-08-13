@@ -10,7 +10,6 @@ import {
 } from '../../shared/components/Navigation/NavbarElements';
 import nodata from './nodata.png';
 import ShowCreateOffer from './showCreateOffer';
-
 const NoOffersCreateOne = props => {
     return (
         <div>
@@ -40,5 +39,5 @@ const NoOffersCreateOne = props => {
             </Card>
         </div>
     );
-}; 
+};
 export default NoOffersCreateOne; 

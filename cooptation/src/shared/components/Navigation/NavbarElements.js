@@ -158,3 +158,38 @@ export const NavBtnLink = styled(Link)`
     background-position: right center;
   }
 `;
+
+export const GradientBtn = styled.div`
+ 
+  border-radius: 10rem;
+  padding: 5px 12px;
+  width: 12rem;
+  font-size: 1rem;
+  color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  /*added */
+
+  text-align: center;
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, #1CD8D2 0%, #93EDC7  0%, #1CD8D2  100%);
+  margin: 10px;
+  padding: 15px 45px;
+  box-shadow: 0 0 3px #eee;
+  display: block;
+
+  /* Second Nav */
+  margin-left: 24px;
+  &:hover {
+    background: linear-gradient(to right, #1CD8D2 100%, #93EDC7  20%, #1CD8D2  80%);
+    color: black;
+    /*added */
+    color: red;
+    color: #fff;
+   
+    background-position: right center;
+  }
+`;

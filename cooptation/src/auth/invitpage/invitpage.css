@@ -1,0 +1,521 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.recPage {
+    padding-top: 5%;
+    background: rgb(255, 255, 255);
+    height: 100Vh;
+    
+   
+}
+
+.recNavBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 10%;
+}
+
+.recNavBar > .imgContainer{
+    border-radius: 20%;
+    transform: scale(0.7);
+    padding: 10px;
+    border: 3px solid cyan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 20px cyan;
+}
+
+.recNavBar nav {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    
+}
+
+.recNavBar nav ul{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    
+}
+
+
+.recNavBar a {
+    text-decoration: none;
+    color: cyan;
+    transition: 0.3s;
+    border: 1px solid cyan;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 14px;
+    position: relative;
+    
+}
+
+
+.recNavBar a:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: cyan;
+    z-index: -1;
+
+}
+
+.recNavBar a:before {
+    content: '';
+}
+
+.recForm {
+    width: 10%;
+    
+    height: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.recCv {
+    width: 50%;
+    float: right;
+    height: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column  ;    
+    
+    
+}
+
+input {
+    margin: 10px 0 ;
+    text-align: center;
+    outline: none;
+    background: none;
+    border: none;
+    color: #111;
+    background-color: rgb(255, 255, 255);
+    padding: 8px 5px;
+    border-radius: 100px;
+    width: 280px;
+    height: 50px;
+
+}
+
+input::placeholder {
+    text-align: center;
+    font-size: 1.45em;
+    opacity: .5;
+    
+    
+}
+ .recForm placeholder {
+  text-align: center;
+  font-size: 1.45em;
+  color :black;
+  
+}
+
+
+
+.imageContainer {
+    width: 400px;
+    height: 580px;
+    /* background-color    : #777; */
+}
+
+.imageContainer img{
+
+    width: 400px;
+    height: 580px;
+    transition: 0.2s;
+  transform: scale(0.8);
+    
+}
+
+.imageContainer img:hover{
+   
+    
+  transform: translateX(-85%) scale(1.04);
+  /* box-shadow: 10px 10px 1000000px #111; */
+
+  
+
+}
+
+#shadowBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+}
+
+#shadowBox:hover{
+    backdrop-filter: blur(10px);
+
+}
+
+
+
+
+.btnDec {
+    margin: 10px;
+    max-width: 150px;
+    height: 40px;
+    color: #fff ;
+    background: linear-gradient(to right, #1cada8 0%, #70dfb1  0%, #0f8884  100%) ;
+    
+
+}
+
+#submitBtn {
+    width: 120px;
+    
+    
+}
+
+
+
+
+
+
+
+
+
+.recForm {
+    
+    align-items: center;
+    position: relative;
+    width: 60%;
+    height:550px;
+    top: 60px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    
+   
+    
+ 
+    
+    
+    background: linear-gradient(
+        58deg,
+        #02B897,
+        #2e94b9
+      );    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    transition: all 0.7s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    cursor: pointer;
+     transition: all 0.3s ease;
+  }
+  
+  .recForm:hover {
+    transform: scale(1.02);
+}
+  
+  .recForm h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .recForm h5 {
+    
+    color: #fff;
+    text-align: center;
+    height: 90px;
+  }
+
+
+
+
+
+  .recForm .user-box {
+    position: relative;
+  }
+  
+  .recForm .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .recForm .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .recForm .user-box input:focus ~ label,
+  .recForm .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+  
+  .recForm form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
+  
+  .recForm a:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+                
+  }
+
+  
+  
+  .recForm a span {
+    position: absolute;
+    display: block;
+  }
+  
+  .recForm a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .recForm a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  .recForm a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  .recForm a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 1 00%;
+    }
+  }
+  
+footer {
+    height: 4%;
+    background: #f1f1f1;
+    text-align: center;
+
+    position: absolute;
+    bottom: 10px;
+}
+
+
+#submitBtn{
+    color: cyan;
+    background: none;
+    border: 1px solid cyan;
+    
+}
+
+
+#submitBtn:hover{
+    background: cyan;
+    color: #111;
+    box-shadow: 2px 2px 20px cyan;
+    
+}
+
+
+.logOutBtn {
+     padding: 10px 30px;
+     outline: none;
+     border: none;
+     background: none;
+    border-radius: 50px;
+    background-color: cyan;
+    color: #111;
+    cursor: pointer;
+    }
+  
+    .logOutBtn:hover {
+  box-shadow: 1px 1px 10px cyan;
+  
+       }
+     
+
+
+#bkgSvg {
+  position: absolute;
+  left: 110px;
+  top: 30px;
+  width: 200px;
+  height: 200px;
+  opacity: 0.5;
+}
+
+
+
+
+.recFormAccepte {
+  width: 30%;
+  
+  float: left;
+
+  height: 90%;
+  margin-left: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(
+      58deg,
+      #02B897,
+      #2e94b9
+    );    box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  transition: all 0.7s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  cursor: pointer;
+   transition: all 0.3s ease;
+}
+
+  
+.recFormAccepte2 {
+  width: 40%;
+  
+  float: right;
+
+  height: 90%;
+  margin-right: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(
+      58deg,
+      #5bb3a3,
+      #13607b
+    );    box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  transition: all 0.7s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  cursor: pointer;
+   transition: all 0.3s ease;
+}
+
+  
+
+.recFormAccepte3 {
+  width: 40%;
+  
+  float: right;
+  height: 90%;
+  margin-right: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(
+      58deg,
+      #5bb3a3,
+      #13607b
+    );    box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  transition: all 0.7s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  cursor: pointer;
+   transition: all 0.3s ease;
+}
+

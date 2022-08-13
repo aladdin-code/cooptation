@@ -23,16 +23,14 @@ import ResponsiveIConButton from '../../shared/components/UIElements/ResponsiveI
 
   
  
-import Axios from "axios";
+import Axios from "../../api/axios";
 
 const OfferDetails = props => {
     const offerId = useParams()._id;
-
-
     const [loadedOffer, setOffer] = useState([]);
 
     const fetchOffer = async () => {
-      let url =  `http://localhost:5000/api/offer/${offerId}`
+      let url =  `/api/offer/${offerId}`
       console.log("thhheeee iiddd");
       console.log(url)
       console.log("thhheeee iiddd");
@@ -44,7 +42,6 @@ const OfferDetails = props => {
    //   console.log(loadedOffer);
   
     };
-  
     useEffect(() => {
       fetchOffer();
     },  );

@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, { useContext , useState, useEffect } from "react";
+import { UserContext } from "../../shared/context/AuthContext";
+ 
 import { Link } from 'react-router-dom';
 import Axios from "axios";
 import { Favorite, FavoriteBorder, MoreVert, Share, Delete } from "@mui/icons-material";
@@ -21,6 +23,7 @@ import {
   Dialog,
 } from "@mui/material";
 
+
 import './Offer.css'
 import ResponsiveIConButton from '../../shared/components/UIElements/ResponsiveIconButton';
 import Slide from '@mui/material/Slide';
@@ -28,6 +31,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 const Offer = props => {
+
+  const { user } = useContext(UserContext);
+
   /*
   ^ open The decission Dialog , Delete or Not
   */
@@ -40,7 +46,6 @@ const Offer = props => {
     console.log("CCCLLLLLLLOOOOOOOOOOOSEEE ALERT");
     setOpenAlert(false);
   };
-
   const [openErrorAlert, setOpenErrorAlert] = React.useState(false);
   const handleOpenErrorAlert = () => {
     console.log("Oppppeeeeeeen   aleeerttttt ");
@@ -51,11 +56,9 @@ const Offer = props => {
     setOpenErrorAlert(false);
     setOpenAlert(false);
   };
-
     /*
   ^ open The Erreur Dialog , Delete or Not
   */
-
   const deletOffer = id => {
   console.log(".............. DElete is caled with the following ID");
   console.log(id);
@@ -73,7 +76,6 @@ const Offer = props => {
         } else {
           console.log("not success !! Else Is reached ")
           openErrorAlert()
-           
           // window.location.reload();
         }
       }).catch(
@@ -81,18 +83,12 @@ const Offer = props => {
           handleOpenErrorAlert()
          }
       )
-      
       ;
-
-
   }
   return (
     <div>
       <div>
-        {
-          // error dialog
-          // openAlert
-        }
+        
         <Dialog
           open={openErrorAlert}
           onClose={handleCloseErrorAlert}
@@ -154,10 +150,11 @@ const Offer = props => {
           </IconButton>
           {
             // delete this offer dialog
-          }
-           <IconButton  onClick= {handleOpenAlert} sx={{ marginRight: 2 }} aria-label="share">
+            user.user.isAdmin? <IconButton  onClick= {handleOpenAlert} sx={{ marginRight: 2 }} aria-label="share">
             <Delete />
-          </IconButton>
+          </IconButton> :  null
+          }
+           
 <Dialog
         open={openAlert}
         TransitionComponent={Transition}
@@ -179,8 +176,14 @@ const Offer = props => {
           <Link to={`/offers/${props.id}`}>
             <Button sx={{ marginRight: 2 }} variant="outlined" onClick={() => { }} >Voir Plus</Button>
           </Link>
-          <Button sx={{ marginRight: 2 }} variant="outlined" onClick={() => { alert('clicked'); }} >Editer</Button>
-          <ResponsiveIConButton />
+          {
+            // delete this offer dialog
+            user.user.isAdmin?  <Button sx={{ marginRight: 2 }} variant="outlined" onClick={() => { alert('clicked'); }} >Editer</Button> :   <ResponsiveIConButton />
+          }
+
+
+         
+         
         </CardActions>
       </Card>
     </div>
