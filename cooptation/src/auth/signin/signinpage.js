@@ -82,10 +82,11 @@ function SigninPage() {
       console.log("RRRRRRRRRRRRRRRRRRRRRRRRRR");
         changeErrorDescriptionHandler(" Email ou mot de passe incorrect");
        changeDialogTitleHandler("Success");
-                }
+      }
     ); ////
     ///
   }
+
   ////
   return (
    <>
@@ -94,9 +95,11 @@ function SigninPage() {
       <InputGroup type="text" placeholder="Email" name="email" onChangeHandler={onChangeHandler} />
       <InputGroup type="text" placeholder="Mot de passe" name="password" onChangeHandler={onChangeHandler} />
     <input   variant="outlined" onClick={handleClickOpen} type="submit" id="submitBtn" value="se connecter "  />
-       {/* <Button variant="outlined" onClick={handleClickOpen}>
+       {
+       /* <Button variant="outlined" onClick={handleClickOpen}>
         Slide in alert dialog
-      </Button>  */}
+      </Button>  
+      */}
       <Dialog
         open={open}
         onClose={handleClose}

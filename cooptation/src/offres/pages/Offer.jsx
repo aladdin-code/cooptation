@@ -1,6 +1,5 @@
 import React, { useContext , useState, useEffect } from "react";
 import { UserContext } from "../../shared/context/AuthContext";
- 
 import { Link } from 'react-router-dom';
 import Axios from "axios";
 import { Favorite, FavoriteBorder, MoreVert, Share, Delete } from "@mui/icons-material";
@@ -22,18 +21,25 @@ import {
   DialogActions,
   Dialog,
 } from "@mui/material";
-
-
-import './Offer.css'
+import './Offer.css';
+import ShowUpdateOffer from'../components/showUpdateOffer';
 import ResponsiveIConButton from '../../shared/components/UIElements/ResponsiveIconButton';
 import Slide from '@mui/material/Slide';
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 const Offer = props => {
-
   const { user } = useContext(UserContext);
-
+  /*
+  ^Open Edit Alert
+  */
+  const [openUpdateAlert, setOpenUpdateAlert] = React.useState(false);
+  const handleOpenUpdateAlert = () => {
+    setOpenUpdateAlert(true);
+  };
+  const handleCloseUpdateAlert = () => { 
+    setOpenUpdateAlert(false);
+  };
   /*
   ^ open The decission Dialog , Delete or Not
   */
@@ -88,7 +94,6 @@ const Offer = props => {
   return (
     <div>
       <div>
-        
         <Dialog
           open={openErrorAlert}
           onClose={handleCloseErrorAlert}
@@ -154,7 +159,6 @@ const Offer = props => {
             <Delete />
           </IconButton> :  null
           }
-           
 <Dialog
         open={openAlert}
         TransitionComponent={Transition}
@@ -172,18 +176,30 @@ const Offer = props => {
           <Button  onClick={handleCloseAlert}>Annuler</Button>
           <Button color='error' onClick ={() => deletOffer(props.id) }>Supprimer</Button>
         </DialogActions>
-      </Dialog>
+</Dialog>
           <Link to={`/offers/${props.id}`}>
             <Button sx={{ marginRight: 2 }} variant="outlined" onClick={() => { }} >Voir Plus</Button>
           </Link>
+          
           {
             // delete this offer dialog
-            user.user.isAdmin?  <Button sx={{ marginRight: 2 }} variant="outlined" onClick={() => { alert('clicked'); }} >Editer</Button> :   <ResponsiveIConButton />
+            user.user.isAdmin? 
+            <ShowUpdateOffer
+            child= { <Button sx={{ marginRight: 2 }} variant="outlined"   >Editer</Button> }
+             title={props.title}
+             modedemploi={props.modedemploi}
+             expYears={props.expYears}
+             requiredSkills={props.requiredSkills}
+             responsabilities={props.responsabilities}
+             description={props.description}
+             company = {props.company}
+             companyDescription={props.companyDescription}
+             duration={props.duration}
+             id = {props.id}
+            
+             />
+             :   <ResponsiveIConButton />
           }
-
-
-         
-         
         </CardActions>
       </Card>
     </div>

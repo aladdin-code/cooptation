@@ -22,7 +22,7 @@ import { Marginer } from "./marginer";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-export default function ShowCreateOffer(props) {
+export default function ShowUpdateOffer(props) {
   // Shwo alert Dialog
 
   const [errorDescription, changeErrorDescription] = React.useState("");
@@ -67,28 +67,28 @@ export default function ShowCreateOffer(props) {
   //
   const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState({
-    title: '',
-    modedemploi: '',
-    expYears: '',
-    requiredSkills: '',
-    responsabilities: '',
-    description: '',
-    company: '',
-    companyDescription: '',
+    title: props.title,
+    modedemploi: props.modedemploi,
+    expYears: props.expYears,
+    requiredSkills: props.requiredSkills,
+    responsabilities: props.responsabilities,
+    description: props.description,
+    company: props.company,
+    companyDescription: props.companyDescription,
     startDate: '',
-    duration: '',
+    duration: props.duration,
+    id: props.id,
   });
 
   const [startDate, setStartDate] = useState(new Date());
 
    
-  const createOffer = (event) => {
+  const updateOffer = (event) => {
+
     event.preventDefault();
-    console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPP");
-    console.log(formData);
-    console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+
     const formDataF = new FormData();
-    formDataF.append("image", selectedFile);
+    formDataF.append("image", "selectedFile");
     formDataF.append("title", formData.title);
     formDataF.append("modedemploi", formData.modedemploi);
     formDataF.append("expYears", formData.expYears);
@@ -98,24 +98,38 @@ export default function ShowCreateOffer(props) {
     formDataF.append("company", formData.company);
     formDataF.append("companyDescription", formData.companyDescription);
     formDataF.append("duration", formData.duration);
-    console.log("DDDDDDDDDDDDDDDDDDDDDD");
- console.log(startDate);
-    console.log("DDDDDDDDDDDDDDDDDDDDDD");
+    formDataF.append("id", formData.id);
+
     formDataF.append("startDate", startDate);
-    Axios.post("http://localhost:5000/api/offer/addOffer", formDataF, {
+    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    console.log(formDataF.image);
+    console.log("eeeeeeeeeeeeeeeeeeeeeee");
+    Axios.post("http://localhost:5000/api/offer/update", formDataF, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     }
     )
       .then((response) => {
-  changeErrorDescriptionHandler("Offre créée avec succès !");
+
+        console.log("OOOOOOOOOOOOOOOOOOOOOOO");
+        console.log(response);
+        console.log("OOOOOOOOOOOOOOOOOOOOOOO")
+        changeErrorDescriptionHandler("Offre créée avec succès !");
         changeDialogTitleHandler("Success");
         handleClickOpenAlertSuccess();
       }).catch((error) => {
+
+        console.log("RRRRRRRRRRRRRRRRRRRRRRRRRR");
+        console.log(error.response.data);
+        console.log("RRRRRRRRRRRRRRRRRRRRRRRRRR");
+
+        console.log("IIIIIIIIIIIIIIIIIIII");
+        console.log(error.response.data.error);
         if(error.response.data.error === "User Not Invited !")  {
 // Tkharijlo Pop
         } else  if (error.response.data.error === "User Not Invited !")
+        console.log("IIIIIIIIIIIIIIIIIIII");
         //  
         changeErrorDescriptionHandler(error.response.data.error);
         changeDialogTitleHandler("Erreur !");
@@ -227,7 +241,7 @@ export default function ShowCreateOffer(props) {
     });
   }
   const [open, setOpen] = React.useState(false);
-  const { child } = props;
+  const { child } = props; 
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -272,13 +286,13 @@ export default function ShowCreateOffer(props) {
           aria-describedby="alert-dialog-slide-description"
         >
           <DialogTitle>
-            {"Creer Une Offer"}
+            {"Modifier Offer"}
           </DialogTitle>
           <Divider />
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
               <BoxContainer>
-                <h5 >Titre</h5>
+                <h5 >Titre</h5>  <h5 >{props.id}</h5>
                 <Input value={formData.title} onChange={handleChange} id="titre" type="text" placeholder="Titre" />
                 <Marginer direction="vertical" margin={5} />
                 <h5 >Mode D'emploi</h5>
@@ -327,7 +341,7 @@ export default function ShowCreateOffer(props) {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Annuler</Button>
-            <Button onClick={createOffer} variant="contained">Creer</Button>
+            <Button onClick={updateOffer} variant="contained">S'auvegarder</Button>
           </DialogActions>
         </Dialog>
       </div>
